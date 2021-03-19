@@ -2,28 +2,14 @@ import click
 import subprocess
 from os.path import abspath
 
-"""
-This is the main Oecophylla script which handles launching of the entire
-pipeline and installation of all necessary modules/environments.
-Using a set of FASTA/FASTQ input files,
-sample sheet (Illumina-specific) and tool parameters file,
-it launches the Snakemake pipeline, either locally or on a supported
-cluster system (Torque, Slurm).
-Example usage:
-==============
-*NOT FUNCTIONAL AS OF NOW*
-Installation:
--------------
-oecophylla install
-Execute Workflow:
------------------
-oecophylla workflow --input-dir ./inputs --sample-sheet sample.txt --params params.yaml --output-dir ./outputs
-"""
 
 @click.group()
 def run():
+    """
+    A tool to assist with using Adaptive Sampling on Oxford Nanopore
+    sequencers to improve (meta)genome assembly.
+    """
     pass
-
 
 def readfq(fp): # this is a generator function
     """
@@ -198,7 +184,16 @@ def index_fasta(fasta_fp,
 
 
 def winnow(input_fp, bed, fasta, toml, mmi, length, config, host_ip, host_port):
+    """
+    Create Adaptive Sampling target files from an assembly FASTA reference.
 
+    Must specify a FASTA-format assembly as --input, as well as at least one
+    output option among the following: [--bed, --fasta, --toml]
+
+
+    If specifying a TOML-formatted output, must also provide a path at which
+    to create the minimap2 index using --mmi.
+    """
     # check inputs
     if all(v is None for v in (bed, fasta, toml)):
         raise ValueError("Must select at least one of "
