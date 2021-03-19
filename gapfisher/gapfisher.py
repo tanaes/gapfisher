@@ -182,19 +182,19 @@ def index_fasta(fasta_fp,
               help='Output MiniMap Index of sequence target')
 # param: length
 @click.option('--length', '-l', required=False, type=click.INT, default=2000,
-              help='Length of target region around contig ends')
+              help='Length of target region around contig ends', show_default=True)
 # param: caller config
 @click.option('--config', '-c', required=False, type=click.STRING,
               default='dna_r9.4.1_450bps_hac',
-              help='ONT basecalling config to use')
+              help='ONT basecalling config to use', show_default=True)
 # param: caller host
 @click.option('--host-ip', required=False, type=click.STRING,
               default='127.0.0.1',
-              help='IP address to basecaller host')
+              help='IP address to basecaller host', show_default=True)
 # param: caller port
 @click.option('--host-port', required=False, type=click.STRING,
               default='5555',
-              help='Host basecaller port')
+              help='Host basecaller port', show_default=True)
 
 
 def winnow(input_fp, bed, fasta, toml, mmi, length, config, host_ip, host_port):
