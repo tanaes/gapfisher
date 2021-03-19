@@ -199,13 +199,21 @@ def index_fasta(fasta_fp,
 
 def winnow(input_fp, bed, fasta, toml, mmi, length, config, host_ip, host_port):
 
+    # check inputs
+    if all(v is None for v in (bed, fasta, toml)):
+        raise ValueError("Must select at least one of "
+                         "--bed, --fasta, or --toml")
+
+    if toml is not None and mmi is None:
+        raise ValueError("If selecting --toml, must also"
+                         "specify --mmi")
+
     # read input fasta
     with open(input_fp, 'r') as f:
         fasta_in = readfq(f)
 
-    
-    # iterate over contigs
-    targets = clip_input(fasta_in, length)
+        # iterate over contigs
+        targets = clip_input(fasta_in, length)
 
     # if output fasta:
     if fasta is not None:
@@ -233,7 +241,7 @@ def winnow(input_fp, bed, fasta, toml, mmi, length, config, host_ip, host_port):
 
     # if index fasta input with MiniMap2:
     if mmi is not None:
-        log = index_fasta(input_fp, mmi_fp)
+        log = index_fasta(input_fp, mmi)
 
 # - 
 

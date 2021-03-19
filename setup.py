@@ -1,3 +1,4 @@
+import glob
 from setuptools import setup, find_packages
 
 setup(
@@ -9,10 +10,9 @@ setup(
     author_email='jonsan@gmail.com',
     license='MIT License',
     packages=find_packages(),
-    install_requires=['numpy',
-                      'scikit-bio',
-                      'click'],
+    install_requires=['click'],
 
+    scripts=glob.glob('scripts/gapfisher'),
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',
