@@ -1,0 +1,8 @@
+channels:
+  - bioconda
+dependencies:
+  - python=3
+  - minimap2
+  - pip
+  - pip:
+    - https://github.com/tanaes/gapfisher/archive/refs/tags/prerelease-v0.1.0.tar.gz
