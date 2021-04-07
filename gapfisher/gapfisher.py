@@ -111,15 +111,15 @@ def format_toml(fasta_in,
 
     targets_str = ''
     for target in targets:
-        targets_str += '"{0}",{1},{2},-\n'.format(target,
+        targets_str += '"{0},{1},{2},-"\n'.format(target,
                                                 targets[target][1][0],
                                                 targets[target][1][1])
         if targets[target][2] is not None:
-            targets_str += '"{0}",{1},{2},+\n'.format(target,
+            targets_str += '"{0},{1},{2},+"\n'.format(target,
                                                     targets[target][3][0],
                                                     targets[target][3][1])
         else:
-            targets_str += '"{0}",{1},{2},+\n'.format(target,
+            targets_str += '"{0},{1},{2},+"\n'.format(target,
                                                     targets[target][1][0],
                                                     targets[target][1][1])
 
